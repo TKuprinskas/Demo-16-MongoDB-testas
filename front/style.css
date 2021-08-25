@@ -74,6 +74,10 @@ header {
   grid-gap: 20px;
 }
 
+#users {
+  text-align: left;
+}
+
 .plans,
 .users {
   background: #fff;
