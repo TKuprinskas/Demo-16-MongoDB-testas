@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tennis</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="adduser.js"></script>
+    <header>
+      <div>
+        <a href="index.html">Memberships</a>
+        <a href="users.html" class="selected">Users</a>
+      </div>
+    </header>
+  </head>
+  <body>
+    <section class="container first">
+      <div class="toptitle">
+        <h1>Create User</h1>
+      </div>
+    </section>
+    <section class="container">
+      <div id="createUser">
+        <form id="createUserForm">
+          <div class="user-wrapper">
+            <div class="user-input">
+              <label for="name"
+                >First Name <i class="fas fa-asterisk"></i
+              ></label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="First Name"
+              />
+            </div>
+            <div class="user-input">
+              <label for="surname"
+                >Last Name <i class="fas fa-asterisk"></i
+              ></label>
+              <input
+                type="text"
+                name="surname"
+                id="surname"
+                placeholder="Last Name"
+              />
+            </div>
+          </div>
+          <div class="user-wrapper">
+            <div class="user-input">
+              <label for="email"
+                >Email Address <i class="fas fa-asterisk"></i
+              ></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Adress"
+              />
+            </div>
+          </div>
+          <div class="user-wrapper">
+            <div class="user-input">
+              <label for="chooseplan">Choose Membership</label>
+              <select name="chooseplan" id="chooseplan">
+                <option value="trial">Trial</option>
+                <option value="bronze">Bronze</option>
+                <option value="silver">Silver</option>
+                <option value="gold">Gold</option>
+                <option value="platinum">Platinum</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="create-buttons">
+            <button id="cancel-button">Cancel</button>
+            <button type="submit" class="add-button">Create New User</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+  <footer>CopyRight @2021 Membership Manager</footer>
+</html>

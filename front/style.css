@@ -1,0 +1,240 @@
+body {
+  background: #e6e6fa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+header div a {
+  text-decoration: none;
+  color: #87ceeb;
+  font-size: x-large;
+  padding: 0 3rem;
+  font-weight: bold;
+}
+
+.selected {
+  color: #6a5acd;
+}
+
+header {
+  text-align: center;
+  background: #fff;
+  padding: 1.5rem;
+}
+
+.first {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toptitle {
+  flex: 1;
+}
+
+.addBTN {
+  margin: 1rem 0;
+  padding: 1rem 0;
+}
+
+.add-button {
+  height: 100%;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  background: #6a5acd;
+  color: #eee;
+  border: none;
+}
+
+.add-button:hover {
+  cursor: pointer;
+}
+
+.addBTN span {
+  margin-left: 1rem;
+}
+.second {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#membership,
+#users {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 370px);
+  justify-content: space-between;
+  grid-gap: 20px;
+}
+
+.plans,
+.users {
+  background: #fff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+.btndiv {
+  text-align: right;
+}
+
+.btndiv i {
+  background: rgb(196, 128, 128);
+  padding: 0.5rem;
+  color: red;
+  border-radius: 0.2rem;
+}
+
+.delBTN {
+  background-color: transparent;
+  border: none;
+}
+
+.delBTN:hover {
+  cursor: pointer;
+}
+
+.planInfo {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+footer {
+  background: #fff;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+#createMembership,
+#createUser {
+  background: #fff;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 0.2rem;
+}
+
+#createMember {
+  width: 75%;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.form-wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form-input {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-input label {
+  width: 25%;
+  font-weight: bold;
+}
+
+.form-input input {
+  width: 100%;
+  margin-left: 1rem;
+  text-indent: 0.5rem;
+  border: 1px solid #eee;
+}
+
+.form-input textarea {
+  resize: none;
+  width: 100%;
+  margin-left: 1rem;
+  border: 1px solid #eee;
+}
+
+.create-buttons {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+#cancel-button {
+  background: transparent;
+  border: none;
+  font-weight: bolder;
+  font-size: larger;
+  padding: 0 1rem;
+}
+
+#cancel-button:hover {
+  cursor: pointer;
+}
+
+.sorter {
+  text-align: center;
+}
+
+.sorter i {
+  padding-left: 0.5rem;
+}
+
+#sortOrder:hover {
+  cursor: pointer;
+}
+
+#usersField {
+  width: 100%;
+}
+
+.users h4 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: rgba(187, 174, 174, 0.877);
+}
+
+#createUserForm {
+  width: 80%;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.user-wrapper {
+  display: flex;
+}
+
+.user-wrapper .user-input {
+  width: calc(50% - 2rem);
+  margin-bottom: 1rem;
+}
+
+.user-wrapper .user-input input,
+.user-wrapper .user-input select {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #eee;
+  margin-top: 0.5rem;
+}
+
+.user-input #chooseplan {
+  width: 65%;
+}
+
+.user-input:nth-child(2) {
+  margin-left: 1rem;
+}
+
+.user-input label {
+  font-weight: bolder;
+}
+
+.emailGet,
+.membershipGet {
+  color: #6a5acd;
+}
