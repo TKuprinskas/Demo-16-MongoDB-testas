@@ -28,7 +28,7 @@ form.addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      if (name && price && description) {
+      if (name && price && description && currency) {
         alert("You have created a new membership!");
         form.reset();
         setTimeout(() => {
