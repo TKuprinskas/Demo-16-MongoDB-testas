@@ -143,7 +143,7 @@ footer {
 }
 
 .form-input label {
-  width: 25%;
+  width: 30%;
   font-weight: bold;
 }
 
@@ -238,6 +238,12 @@ footer {
 }
 
 .emailGet,
-.membershipGet {
+.membershipGet,
+.ipGet {
   color: #6a5acd;
+}
+
+#currency {
+  width: 5vh;
+  border: 1px solid #eee;
 }

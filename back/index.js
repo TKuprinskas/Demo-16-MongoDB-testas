@@ -1,3 +1,7 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
+/* eslint-disable object-curly-newline */
+/* eslint-disable consistent-return */
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
@@ -32,16 +36,19 @@ app.get('/memberships', async (req, res) => {
 // POST /memberships
 
 app.post('/memberships', async (req, res) => {
-  const { name, price, description } = req.body;
-  if (!name || !price || !description) {
+  const { price, description, currency } = req.body;
+  const { name } = req.body;
+  const upper = name.charAt(0).toUpperCase() + name.substring(1);
+  if (!name || !price || !description || !currency) {
     return res.status(400).send({ err: 'Incorrect data passed' });
   }
   try {
     const con = await client.connect();
     const postData = await con.db('testas').collection('services').insertOne({
-      name,
+      name: upper,
       price,
       description,
+      currency,
     });
     await con.close();
     return res.send(postData);
@@ -73,7 +80,22 @@ app.get('/users/:order', async (req, res) => {
     const getData = await con
       .db('testas')
       .collection('users')
-      .find()
+      .aggregate([
+        {
+          $lookup: {
+            from: 'services',
+            localField: 'service_id',
+            foreignField: 'name',
+            as: 'planprice',
+          },
+        },
+        {
+          $set: {
+            plancost: { $arrayElemAt: ['$planprice.price', 0] },
+            plancurrency: { $arrayElemAt: ['$planprice.currency', 0] },
+          },
+        },
+      ])
       .sort({ name: req.params.order?.toLowerCase() === 'dsc' ? -1 : 1 })
       .toArray();
     await con.close();
@@ -85,7 +107,9 @@ app.get('/users/:order', async (req, res) => {
 
 // POST /users
 app.post('/users', async (req, res) => {
-  const { name, surname, email, service_id } = req.body;
+  const { name, surname, email } = req.body;
+  const { service_id } = req.body;
+  const upper = service_id.charAt(0).toUpperCase() + service_id.substring(1);
   if (!name || !surname || !email || !service_id) {
     res.status(400).send({ err: 'Incorrect data passed' });
   }
@@ -95,7 +119,7 @@ app.post('/users', async (req, res) => {
       name,
       surname,
       email,
-      service_id,
+      service_id: upper,
     });
     await con.close();
     return res.send(postData);

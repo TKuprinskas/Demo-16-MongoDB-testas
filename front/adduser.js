@@ -6,6 +6,13 @@ cancelBTN.addEventListener("click", (e) => {
 
 const url = "http://localhost:3000/users";
 
+fetch("https://api.ipify.org?format=json")
+  .then((result) => result.json())
+  .then((ip) => console.log(ip))
+  .catch((error) => {
+    console.log(error);
+  });
+
 const form = document.getElementById("createUserForm");
 form.addEventListener("submit", (e) => {
   e.preventDefault();

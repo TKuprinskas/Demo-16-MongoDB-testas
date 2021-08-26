@@ -21,7 +21,7 @@ function createPlan(data) {
     div.className = "plans";
     const output = document.getElementById("membership");
     const planTitle = document.createElement("h2");
-    planTitle.textContent = `$${item.price} ${item.name}`;
+    planTitle.textContent = `${item.currency}${item.price} ${item.name}`;
 
     const planInfo = document.createElement("p");
     planInfo.textContent = item.description;

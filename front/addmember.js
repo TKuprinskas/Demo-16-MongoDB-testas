@@ -11,6 +11,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = e.target.elements.name.value.trim();
   const price = Number(e.target.elements.price.value);
+  const currency = e.target.elements.currency.value.trim();
   const description = e.target.elements.description.value.trim();
 
   fetch(url, {
@@ -22,6 +23,7 @@ form.addEventListener("submit", (e) => {
       name,
       price,
       description,
+      currency,
     }),
   })
     .then((res) => res.json())

@@ -37,8 +37,15 @@ function showUser(data) {
     membership.textContent = `Membership: `;
     const membershipGet = document.createElement("span");
     membershipGet.className = "membershipGet";
-    membershipGet.textContent = `${item.service_id}`;
+    membershipGet.textContent = `${item.service_id} (${item.plancurrency}${item.plancost})`;
     membership.appendChild(membershipGet);
+
+    const userIP = document.createElement("p");
+    userIP.textContent = `IP address: `;
+    const ipGet = document.createElement("span");
+    ipGet.className = "ipGet";
+    ipGet.textContent = `${item.registration_ip}`;
+    userIP.appendChild(ipGet);
 
     const btndiv = document.createElement("div");
     btndiv.className = "btndiv";
@@ -61,7 +68,7 @@ function showUser(data) {
       }
     });
 
-    div.append(userName, email, membership, btndiv);
+    div.append(userName, email, membership, userIP, btndiv);
     btndiv.append(delBTN);
     output.append(div);
   });
