@@ -6,9 +6,11 @@ cancelBTN.addEventListener("click", (e) => {
 
 const url = "http://localhost:3000/users";
 
+var urlIP;
 fetch("https://api.ipify.org?format=json")
   .then((result) => result.json())
-  .then((ip) => console.log(ip))
+  .then((data) => (urlIP = data))
+  .then(() => console.log(urlIP))
   .catch((error) => {
     console.log(error);
   });
@@ -20,6 +22,7 @@ form.addEventListener("submit", (e) => {
   const surname = e.target.elements.surname.value.trim();
   const email = e.target.elements.email.value.trim();
   const service_id = e.target.elements.chooseplan.value;
+  const registration_ip = urlIP.ip;
 
   fetch(url, {
     method: "POST",
@@ -31,6 +34,7 @@ form.addEventListener("submit", (e) => {
       surname,
       email,
       service_id,
+      registration_ip,
     }),
   })
     .then((res) => res.json())

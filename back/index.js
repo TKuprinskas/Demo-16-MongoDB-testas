@@ -107,10 +107,10 @@ app.get('/users/:order', async (req, res) => {
 
 // POST /users
 app.post('/users', async (req, res) => {
-  const { name, surname, email } = req.body;
+  const { name, surname, email, registration_ip } = req.body;
   const { service_id } = req.body;
   const upper = service_id.charAt(0).toUpperCase() + service_id.substring(1);
-  if (!name || !surname || !email || !service_id) {
+  if (!name || !surname || !email || !service_id || !registration_ip) {
     res.status(400).send({ err: 'Incorrect data passed' });
   }
   try {
@@ -120,6 +120,7 @@ app.post('/users', async (req, res) => {
       surname,
       email,
       service_id: upper,
+      registration_ip,
     });
     await con.close();
     return res.send(postData);
