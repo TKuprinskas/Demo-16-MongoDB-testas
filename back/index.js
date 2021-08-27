@@ -147,37 +147,5 @@ app.delete('/users/:id', async (req, res) => {
   }
 });
 
-app.get('/planprice', async (req, res) => {
-  try {
-    const con = await client.connect();
-    const getData = await con
-      .db('testas')
-      .collection('users')
-      .aggregate([
-        {
-          $lookup: {
-            from: 'services',
-            localField: 'service_id',
-            foreignField: '_id',
-            as: 'plan',
-          },
-        },
-        // { $unwind: '$plan' },
-        {
-          $set: {
-            plancost: { $arrayElemAt: ['$plan.price', 0] },
-            plancurrency: { $arrayElemAt: ['$plan.currency', 0] },
-            planname: { $arrayElemAt: ['$plan.name', 0] },
-          },
-        },
-      ])
-      .toArray();
-    await con.close();
-    res.send(getData);
-  } catch (err) {
-    res.status(500).send({ err: 'Please try again' });
-  }
-});
-
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
