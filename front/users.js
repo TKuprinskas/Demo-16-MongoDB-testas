@@ -37,7 +37,7 @@ function showUser(data) {
     membership.textContent = `Membership: `;
     const membershipGet = document.createElement("span");
     membershipGet.className = "membershipGet";
-    membershipGet.textContent = `${item.service_id} (${item.plancurrency}${item.plancost})`;
+    membershipGet.textContent = `${item.planname} (${item.plancurrency}${item.plancost})`;
     membership.appendChild(membershipGet);
 
     const userIP = document.createElement("p");

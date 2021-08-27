@@ -11,7 +11,7 @@ function showOptions(data) {
   const select = document.getElementById("chooseplan");
   data.forEach((item) => {
     const option = document.createElement("option");
-    option.value = item.name;
+    option.value = item._id;
     option.textContent = item.name;
     select.append(option);
   });
@@ -42,7 +42,7 @@ form.addEventListener("submit", (e) => {
   const name = e.target.elements.name.value.trim();
   const surname = e.target.elements.surname.value.trim();
   const email = e.target.elements.email.value.trim();
-  const service_id = e.target.elements.chooseplan.value;
+  const service_id = e.target.elements.chooseplan.value.trim();
   const registration_ip = urlIP.ip;
 
   fetch(url, {

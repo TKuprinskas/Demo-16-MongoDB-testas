@@ -85,14 +85,15 @@ app.get('/users/:order', async (req, res) => {
           $lookup: {
             from: 'services',
             localField: 'service_id',
-            foreignField: 'name',
-            as: 'planprice',
+            foreignField: '_id',
+            as: 'plan',
           },
         },
         {
           $set: {
-            plancost: { $arrayElemAt: ['$planprice.price', 0] },
-            plancurrency: { $arrayElemAt: ['$planprice.currency', 0] },
+            plancost: { $arrayElemAt: ['$plan.price', 0] },
+            plancurrency: { $arrayElemAt: ['$plan.currency', 0] },
+            planname: { $arrayElemAt: ['$plan.name', 0] },
           },
         },
       ])
@@ -107,21 +108,22 @@ app.get('/users/:order', async (req, res) => {
 
 // POST /users
 app.post('/users', async (req, res) => {
-  const { name, surname, email, registration_ip } = req.body;
-  const { service_id } = req.body;
-  const upper = service_id.charAt(0).toUpperCase() + service_id.substring(1);
+  const { name, surname, email, service_id, registration_ip } = req.body;
   if (!name || !surname || !email || !service_id || !registration_ip) {
     res.status(400).send({ err: 'Incorrect data passed' });
   }
   try {
     const con = await client.connect();
-    const postData = await con.db('testas').collection('users').insertOne({
-      name,
-      surname,
-      email,
-      service_id: upper,
-      registration_ip,
-    });
+    const postData = await con
+      .db('testas')
+      .collection('users')
+      .insertOne({
+        name,
+        surname,
+        email,
+        service_id: ObjectId(req.body.service_id),
+        registration_ip,
+      });
     await con.close();
     return res.send(postData);
   } catch (err) {
@@ -140,6 +142,38 @@ app.delete('/users/:id', async (req, res) => {
       .deleteOne({ _id: ObjectId(id) });
     await con.close();
     res.send({ msg: 'Membership has been deleted', deleteData });
+  } catch (err) {
+    res.status(500).send({ err: 'Please try again' });
+  }
+});
+
+app.get('/planprice', async (req, res) => {
+  try {
+    const con = await client.connect();
+    const getData = await con
+      .db('testas')
+      .collection('users')
+      .aggregate([
+        {
+          $lookup: {
+            from: 'services',
+            localField: 'service_id',
+            foreignField: '_id',
+            as: 'plan',
+          },
+        },
+        // { $unwind: '$plan' },
+        {
+          $set: {
+            plancost: { $arrayElemAt: ['$plan.price', 0] },
+            plancurrency: { $arrayElemAt: ['$plan.currency', 0] },
+            planname: { $arrayElemAt: ['$plan.name', 0] },
+          },
+        },
+      ])
+      .toArray();
+    await con.close();
+    res.send(getData);
   } catch (err) {
     res.status(500).send({ err: 'Please try again' });
   }
