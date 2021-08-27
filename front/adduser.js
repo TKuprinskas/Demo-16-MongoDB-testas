@@ -5,6 +5,27 @@ cancelBTN.addEventListener("click", (e) => {
 });
 
 const url = "http://localhost:3000/users";
+const urlMemberships = "http://localhost:3000/memberships";
+
+function showOptions(data) {
+  const select = document.getElementById("chooseplan");
+  data.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.name;
+    option.textContent = item.name;
+    select.append(option);
+  });
+}
+
+function getData() {
+  fetch(urlMemberships)
+    .then((res) => res.json())
+    .then((data) => {
+      showOptions(data);
+    });
+}
+
+getData();
 
 var urlIP;
 fetch("https://api.ipify.org?format=json")
