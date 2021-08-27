@@ -74,7 +74,7 @@ function showUser(data) {
   });
 }
 
-document.getElementById("sortOrder").addEventListener("click", (e) => {
+document.getElementById("sortOrderSpan").addEventListener("click", (e) => {
   const text = e.target.textContent;
   if (text.includes("ASC")) {
     e.target.textContent = text.replace("ASC", "DSC");
